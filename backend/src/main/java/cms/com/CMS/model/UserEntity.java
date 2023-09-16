@@ -33,6 +33,8 @@ public class UserEntity {
 
     @NotBlank
     private String password;
+    private String profilePicture;
+    private String resetToken;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class,
             cascade = CascadeType.PERSIST)

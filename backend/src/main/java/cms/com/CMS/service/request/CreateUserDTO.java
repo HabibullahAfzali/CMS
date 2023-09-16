@@ -2,15 +2,15 @@ package cms.com.CMS.service.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class CreateUserDTO {
 
     @Email
@@ -19,6 +19,8 @@ public class CreateUserDTO {
 
     @NotBlank
     private String username;
+    private String profilePicture;
+    private String resetToken;
 
     @NotBlank
     private String password;

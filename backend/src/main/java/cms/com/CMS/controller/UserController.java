@@ -14,11 +14,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -36,24 +38,36 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
-    public List<UserEntity> listUsers(){
-        return userDetailsService.getAllUsers();
-    }
-
+    public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/webapp/Images";
 
     @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
+    public ResponseEntity<?> createUser(@Valid @ModelAttribute CreateUserDTO createUserDTO,
+                                        @RequestParam("image") MultipartFile file){
+        String originalFilename = file.getOriginalFilename();
+        Path fileNameAndPath = Paths.get(uploadDirectory,originalFilename);
+        try {
+            Files.write(fileNameAndPath,file.getBytes());
 
-        UserEntity userEntity = new UserEntity();
-        userEntity.setEmail(createUserDTO.getEmail());
-        userEntity.setUsername(createUserDTO.getUsername());
-        userEntity.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
+            UserEntity userEntity = new UserEntity();
+            userEntity.setProfilePicture(originalFilename);
+            userEntity.setEmail(createUserDTO.getEmail());
+            userEntity.setUsername(createUserDTO.getUsername());
+            userEntity.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
 
-        userRepository.save(userEntity);
+            userRepository.save(userEntity);
+            return ResponseEntity.ok("User Created Successfully!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        return ResponseEntity.ok("User registered successfully.");
+
     }
+    @GetMapping("/users")
+    public ResponseEntity<List<UserEntity>> listUsers(){
+        List<UserEntity> userEntities = userDetailsService.getAllUsers();
+        return  ResponseEntity.ok(userEntities);
+    }
+
     @PostMapping("/assign-roles")
     public ResponseEntity<?> assignRolesToUser(@RequestBody AssignRoleRequest assignRoleRequest) {
 

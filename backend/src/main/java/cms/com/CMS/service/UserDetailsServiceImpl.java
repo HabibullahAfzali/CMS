@@ -50,6 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 //get all users
     public List<UserEntity> getAllUsers(){
+
         return (List<UserEntity>) userRepository.findAll();
     }
 

@@ -61,6 +61,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/Images/**").permitAll();
                     auth.requestMatchers("/api/**").permitAll();
                     auth.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll();
                     auth.requestMatchers(HttpMethod.POST,"/api/createUser").permitAll(); // Allow POST requests to /users/createUser
