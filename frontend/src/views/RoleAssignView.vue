@@ -1,6 +1,6 @@
 <script setup>
 import Navbar from '../components/Navbar.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
@@ -10,7 +10,7 @@ const selectedUser = ref("Select_from_list");
 const selectedRole = ref("Select_from_list");
 const route = useRouter();
 const assignRoles = async () => {
-    
+
     const assignData = {
         userId: selectedUser.value,
         roleId: selectedRole.value,
@@ -18,9 +18,9 @@ const assignRoles = async () => {
     console.log("assign data: ", assignData)
     axios.post('http://localhost:8080/api/assign-roles', assignData)
         .then(() => {
-            console.log("assign data: ",assignData)
+            console.log("assign data: ", assignData)
             alert("Role successfully assigned to the user!");
-            route.push('/listusers');
+            route.push('/ViewUser');
         })
         .catch(error => {
             console.error("Role Not Assigned:", error);
@@ -53,14 +53,17 @@ onMounted(() => {
 <template>
     <main>
         <Navbar />
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5"
+            style="background-color: #4ed8f4;  border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);">
             <div class="row gx-lg-5 align-items-center mb-5">
-                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <div class="col-lg-6 mb-5 mb-lg-0"
+                    style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        Here you go! Since after  <br />
-                        <span style="color: hsl(218, 81%, 75%)">you will have the given rights access</span>
+                        Here you go! Since after <br />
+                        <span style="color: #0096c7">you will have the given rights access</span>
                     </h1>
-                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    <p class="mb-4 opacity-70"
+                        style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
                         Pleas take into account all your access reposibilities
                     </p>
                 </div>
@@ -69,15 +72,18 @@ onMounted(() => {
                     <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
-                    <div class="card bg-glass">
-                        <h1 class="mt-3 display-5 fw-bold ls-tight text-center" style="color: hsl(218, 81%, 75%)">User Authorization
+                    <div class="card bg-glass"
+                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
+                        <h1 class="mt-3 display-5 fw-bold ls-tight text-center">Authorization <br /><i
+                                class="bi bi-shield-check"></i>
                         </h1>
                         <div class="card-body px-4 py-5 px-md-5">
                             <form @submit.prevent="assignRoles">
                                 <!-- User Dropdown -->
                                 <div class="col-md-12 form-group mb-3">
                                     <label for="username" class="form-label">User</label>
-                                    <select id="username" name="username" class="form-control" v-model="selectedUser">
+                                    <select id="username" name="username" class="form-control" v-model="selectedUser"
+                                        required>
                                         <option value="Select_from_list" disabled>Select_from_list</option>
                                         <option v-for="user in users" :key="user.id" :value="user.id">{{ user.username
                                         }}</option>
@@ -87,7 +93,7 @@ onMounted(() => {
                                 <div class="row">
                                     <div class="col-md-12 form-group mb-3">
                                         <label for="name" class="form-label">Role</label>
-                                        <select id="name" name="name" class="form-control" v-model="selectedRole">
+                                        <select id="name" name="name" class="form-control" v-model="selectedRole" required>
                                             <option value="Select_from_list" disabled>Select_from_list</option>
                                             <option v-for="role in roles" :key="role.id" :value="role.id">{{ role.name
                                             }}</option>
@@ -97,7 +103,11 @@ onMounted(() => {
                                 <br><br>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                        <input class="btn btn-secondary w-100" type="submit" value="Submit">
+                                        <button class="btn btn-info w-100"
+                                            :disabled="selectedUser === 'Select_from_list' || selectedRole === 'Select_from_list'">
+                                            <i class="bi bi-check-circle"></i>
+                                            Submit
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -128,5 +138,4 @@ onMounted(() => {
 
 .profile-picture-label:hover {
     background-color: #0a6fea;
-}
-</style>
+}</style>
