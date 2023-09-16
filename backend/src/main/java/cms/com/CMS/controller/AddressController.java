@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.model.Address;
-import AsareCMS.com.AsareCMS.service.AddressService;
+import cms.com.CMS.model.Address;
+import cms.com.CMS.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

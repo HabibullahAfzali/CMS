@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.model.Gender;
-import AsareCMS.com.AsareCMS.repository.GenderRepository;
+import cms.com.CMS.model.Gender;
+import cms.com.CMS.repository.GenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

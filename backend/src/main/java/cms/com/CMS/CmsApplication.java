@@ -1,12 +1,12 @@
-package AsareCMS.com.AsareCMS;
+package cms.com.CMS;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AsareCmsApplication  {
+public class CmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AsareCmsApplication.class, args);
+		SpringApplication.run(CmsApplication.class, args);
 
 		System.out.println("App is running!");
 	}

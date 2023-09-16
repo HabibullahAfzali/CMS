@@ -1,10 +1,9 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.model.Article;
-import AsareCMS.com.AsareCMS.repository.ArticleRepository;
+import cms.com.CMS.model.Article;
+import cms.com.CMS.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;

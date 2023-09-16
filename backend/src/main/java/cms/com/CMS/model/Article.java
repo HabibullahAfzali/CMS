@@ -1,4 +1,4 @@
-package AsareCMS.com.AsareCMS.model;
+package cms.com.CMS.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class Article {
 	private LocalDateTime last_update;
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	private User author;
+	private UserEntity author;
 
 	public Long getId() {
 		return id;
@@ -61,11 +61,11 @@ public class Article {
 	public void setLast_update(LocalDateTime last_update) {
 		this.last_update = last_update;
 	}
-	public User getAuthor() {
+	public UserEntity getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(UserEntity author) {
 		this.author = author;
 	}
 

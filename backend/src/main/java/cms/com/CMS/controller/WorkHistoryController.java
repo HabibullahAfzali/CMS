@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.model.WorkHistory;
-import AsareCMS.com.AsareCMS.service.WorkHistoryService;
+import cms.com.CMS.model.WorkHistory;
+import cms.com.CMS.service.WorkHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

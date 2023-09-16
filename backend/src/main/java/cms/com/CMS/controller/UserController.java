@@ -1,74 +1,79 @@
-package AsareCMS.com.AsareCMS.controller;
-import AsareCMS.com.AsareCMS.exception.ResourceNotFoundException;
-import AsareCMS.com.AsareCMS.model.Role;
-import AsareCMS.com.AsareCMS.model.User;
-import AsareCMS.com.AsareCMS.service.RoleService;
-import AsareCMS.com.AsareCMS.service.UserService;
+package cms.com.CMS.controller;
+
+import cms.com.CMS.repository.RoleRepository;
+import cms.com.CMS.service.UserDetailsServiceImpl;
+import cms.com.CMS.service.UserService;
+import cms.com.CMS.service.request.AssignRoleRequest;
+import cms.com.CMS.service.request.CreateUserDTO;
+import cms.com.CMS.model.RoleEntity;
+import cms.com.CMS.model.UserEntity;
+import cms.com.CMS.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/users")
-
+@RequestMapping("/api")
 public class UserController {
 
-	private final UserService userService;
-private final RoleService roleService;
-	@Autowired
-	public UserController(UserService userService, RoleService roleService) {
-		this.userService = userService;
-		this.roleService = roleService;
-	}
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/users")
+    public List<UserEntity> listUsers(){
+        return userDetailsService.getAllUsers();
+    }
 
 
+    @PostMapping("/createUser")
+    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO){
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(createUserDTO.getEmail());
+        userEntity.setUsername(createUserDTO.getUsername());
+        userEntity.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
+
+        userRepository.save(userEntity);
+
+        return ResponseEntity.ok("User registered successfully.");
+    }
+    @PostMapping("/assign-roles")
+    public ResponseEntity<?> assignRolesToUser(@RequestBody AssignRoleRequest assignRoleRequest) {
+
+        try {
+            userService.assignRolesToUser(assignRoleRequest);
+            return ResponseEntity.ok("Roles assigned successfully");
+
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error assigning role: " + e.getMessage());
+        }
+    }
+    @GetMapping("/roles")
+    public List<RoleEntity> getRoles() {
+      return roleRepository.findAll();
+    }
 
 
-@PostMapping()
-	public User createUser(@RequestBody User user) {
-	Role selectedRole = roleService.getAllRoles().stream().filter(role -> role.getId().equals(user.getRole().getId())).findFirst().
-			orElseThrow(()->new ResourceNotFoundException("Role not found with ID: "+ user.getRole().getId()));
-	user.setRole((selectedRole));
-		return userService.saveUser(user);
-	}
-	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.getAllUsers();
-	}
-
-	@GetMapping("/{id}")
-	public User getUserById(@PathVariable Long id) {
-		return userService.getUserById(id)
-				.orElseThrow(()->new ResourceNotFoundException("User with this id is not exist" + id));
-	}
-	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Long id, @RequestBody User user) {
-		if (userService.getUserById(id).isPresent()) {
-			Role selectedRole = roleService.getAllRoles().stream()
-					.filter(role -> role.getId().equals(user.getRole().getId()))
-					.findFirst()
-					.orElseThrow(() -> new ResourceNotFoundException("Role not found with ID: " + user.getRole().getId()));
-
-			user.setRole(selectedRole);
-			return userService.saveUser(user);
-		}
-		return null;
-	}
-
-	@DeleteMapping("{id}")
-	public ResponseEntity<String> delete(@PathVariable Long id) {
-
-		try {
-			userService.deleteUser(id);
-			return ResponseEntity.ok("User Successfully Deleted");
-		}
-		catch (ResourceNotFoundException e){
-
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body((e.getMessage()));
-		}
-	}
-
+    @DeleteMapping("/deleteUser")
+    public String deleteUser(@RequestParam String id){
+        userRepository.deleteById(Long.parseLong(id));
+        return "User deleted with ID: "+(id);
+    }
 }

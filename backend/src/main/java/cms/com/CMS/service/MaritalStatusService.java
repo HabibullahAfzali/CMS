@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.model.MaritalStatus;
-import AsareCMS.com.AsareCMS.repository.MaritalStatusRepository;
+import cms.com.CMS.model.MaritalStatus;
+import cms.com.CMS.repository.MaritalStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

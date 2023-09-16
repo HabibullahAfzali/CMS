@@ -1,6 +1,6 @@
-package AsareCMS.com.AsareCMS.repository;
+package cms.com.CMS.repository;
 
-import AsareCMS.com.AsareCMS.model.Category;
+import cms.com.CMS.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

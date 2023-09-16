@@ -1,6 +1,6 @@
-package AsareCMS.com.AsareCMS.repository;
+package cms.com.CMS.repository;
 
-import AsareCMS.com.AsareCMS.model.MaritalStatus;
+import cms.com.CMS.model.MaritalStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MaritalStatusRepository extends JpaRepository<MaritalStatus,Long> {

@@ -1,8 +1,8 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.exception.ResourceNotFoundException;
-import AsareCMS.com.AsareCMS.model.Education;
-import AsareCMS.com.AsareCMS.repository.EducationRepository;
+import cms.com.CMS.exception.ResourceNotFoundException;
+import cms.com.CMS.model.Education;
+import cms.com.CMS.repository.EducationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package AsareCMS.com.AsareCMS.repository;
+package cms.com.CMS.repository;
 
-import AsareCMS.com.AsareCMS.model.Address;
+import cms.com.CMS.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {

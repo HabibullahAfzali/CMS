@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.model.Category;
-import AsareCMS.com.AsareCMS.repository.CategoryRepository;
+import cms.com.CMS.model.Category;
+import cms.com.CMS.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package AsareCMS.com.AsareCMS.model;
+package cms.com.CMS.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

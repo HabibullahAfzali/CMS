@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.model.Education;
-import AsareCMS.com.AsareCMS.service.EducationService;
+import cms.com.CMS.model.Education;
+import cms.com.CMS.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package AsareCMS.com.AsareCMS.exception;
+package cms.com.CMS.exception;
 import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

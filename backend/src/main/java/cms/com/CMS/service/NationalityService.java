@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.model.Nationality;
-import AsareCMS.com.AsareCMS.repository.NationalityRepository;
+import cms.com.CMS.model.Nationality;
+import cms.com.CMS.repository.NationalityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package AsareCMS.com.AsareCMS.service;
+package cms.com.CMS.service;
 
-import AsareCMS.com.AsareCMS.exception.ResourceNotFoundException;
-import AsareCMS.com.AsareCMS.model.PersonalInfo;
-import AsareCMS.com.AsareCMS.repository.PersonalInfoRepository;
+import cms.com.CMS.exception.ResourceNotFoundException;
+import cms.com.CMS.model.PersonalInfo;
+import cms.com.CMS.repository.PersonalInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

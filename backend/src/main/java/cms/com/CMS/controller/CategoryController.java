@@ -1,7 +1,7 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.model.Category;
-import AsareCMS.com.AsareCMS.service.CategoryService;
+import cms.com.CMS.model.Category;
+import cms.com.CMS.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

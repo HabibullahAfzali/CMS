@@ -1,8 +1,8 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.exception.ResourceNotFoundException;
-import AsareCMS.com.AsareCMS.model.Article;
-import AsareCMS.com.AsareCMS.service.ArticleService;
+import cms.com.CMS.exception.ResourceNotFoundException;
+import cms.com.CMS.model.Article;
+import cms.com.CMS.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,14 +1,14 @@
-package AsareCMS.com.AsareCMS.controller;
+package cms.com.CMS.controller;
 
-import AsareCMS.com.AsareCMS.exception.ResourceNotFoundException;
-import AsareCMS.com.AsareCMS.model.Gender;
-import AsareCMS.com.AsareCMS.model.MaritalStatus;
-import AsareCMS.com.AsareCMS.model.Nationality;
-import AsareCMS.com.AsareCMS.model.PersonalInfo;
-import AsareCMS.com.AsareCMS.service.GenderService;
-import AsareCMS.com.AsareCMS.service.MaritalStatusService;
-import AsareCMS.com.AsareCMS.service.NationalityService;
-import AsareCMS.com.AsareCMS.service.PersonalInfoService;
+import cms.com.CMS.exception.ResourceNotFoundException;
+import cms.com.CMS.model.Gender;
+import cms.com.CMS.model.MaritalStatus;
+import cms.com.CMS.model.Nationality;
+import cms.com.CMS.model.PersonalInfo;
+import cms.com.CMS.service.GenderService;
+import cms.com.CMS.service.MaritalStatusService;
+import cms.com.CMS.service.NationalityService;
+import cms.com.CMS.service.PersonalInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

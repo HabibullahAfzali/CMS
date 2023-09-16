@@ -1,6 +1,6 @@
-package AsareCMS.com.AsareCMS.controller;
-import AsareCMS.com.AsareCMS.model.Gender;
-import AsareCMS.com.AsareCMS.service.GenderService;
+package cms.com.CMS.controller;
+import cms.com.CMS.model.Gender;
+import cms.com.CMS.service.GenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,17 +1,17 @@
-package AsareCMS.com.AsareCMS.repository;
+package cms.com.CMS.repository;
 
-import AsareCMS.com.AsareCMS.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import cms.com.CMS.model.UserEntity;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
-    Optional<User> findByUsername(String username);
+    Optional<UserEntity> findByUsername(String username);
 
-    Boolean existsByUsername(String username);
-
-    Boolean existsByEmail(String email);}
+    @Query("select u from UserEntity u where u.username = ?1")
+    Optional<UserEntity> getName(String username);
+}
