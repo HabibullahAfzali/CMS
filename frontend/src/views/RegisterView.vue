@@ -3,6 +3,8 @@ import { ref} from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
+
+
 const user = ref({
     username: '',
     email: '',
@@ -29,14 +31,14 @@ const signUp = async () => {
 </script>
 <template>
     <main>
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="container px-3 py-5 px-md-5 text-center text-lg-start my-5 " style="background-color: #4ed8f4;  border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);">
             <div class="row gx-lg-5 align-items-center mb-5">
-                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
                         Welcome To The <br />
-                        <span style="color: hsl(218, 81%, 75%)">Registeration Page</span>
+                        <span style="color: #0096c7">Registeration Page</span>
                     </h1>
-                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    <p class="mb-4 opacity-70" style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
                         It's important to note your password
                     </p>
                 </div>
@@ -45,10 +47,12 @@ const signUp = async () => {
                     <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
-                    <div class="card bg-glass">
-                        <h1 class="mt-3 display-5 fw-bold ls-tight text-center" style="color: hsl(218, 81%, 75%)">SignUp
+                    <div class="card bg-glass" style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
+                        <h1 class="mt-3 display-5 fw-bold ls-tight text-center" >
+                            <i class="bi bi-person-plus"></i> <br/>
+                            SignUp
                         </h1>
-                        <div class="card-body px-4 py-5 px-md-5">
+                        <div class="card-body px-3 py-4 px-md-5">
                             <form @submit.prevent="signUp">
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control center" v-model="user.username" />
@@ -65,14 +69,16 @@ const signUp = async () => {
                                 <br><br>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                        <input class="btn btn-primary w-100" type="submit" value="Submit">
+                                            <button class="btn btn-info w-100">
+                    <i class="bi bi-check-circle"></i> 
+                    Submit
+                </button>
                                     </div>
                                 </div>
                             <br/>
-                                <br/>
                                 <div class="text-center">
                                     <p> Already Have an Account </p>
-                                    <a href="/">login</a>
+                                    <a href="/"> <span class="symbol">&#128273;</span></a>
                                 </div>
                             </form>
                         </div>
@@ -96,6 +102,7 @@ const signUp = async () => {
     transition: background-color 0.3s ease;
 }
 
+ 
 .profile-picture-label i {
     font-size: 36px;
 }
@@ -103,4 +110,13 @@ const signUp = async () => {
 .profile-picture-label:hover {
     background-color: #0a6fea;
 }
+.symbol {
+    font-size: 24px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+.symbol:hover{
+      transform: scale(1.1);
+    border: 2px solid white;
+}
+
 </style>

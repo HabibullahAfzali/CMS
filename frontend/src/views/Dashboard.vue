@@ -20,17 +20,6 @@ const views = ref([
 </script>
 <template>
     <div class="page-wrapper">
-        <header>
-            <!-- Header content goes here -->
-            <div class="header-content">
-                <router-link to="/" class="navbar-brand">
-                    <img src="../assets/Images/logo3.jpg" alt="Logo" class="logo-img">
-                </router-link>
-                <div class="header-icons">
-                </div>
-            </div>
-        </header>
-
         <main>
             <div class="dashboard">
                 <div class="jumbotron jumbotron-fluid text-dark text-center">
@@ -67,19 +56,17 @@ const views = ref([
 
 <style scoped>
 .dashboard {
-    padding: 20px;
+    margin: 4rem;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.logo-img {
-    max-height: 45px;
-    margin-right: 10px;
-    border-radius: 10%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+
 
 .card {
-    margin: 2rem;
-    background-color: black;
+    margin: 3rem;
+    background-color: #0096c7;
+    font-family: 'Courier New', Courier, monospace;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -90,7 +77,7 @@ const views = ref([
     flex-direction: column;
     justify-content: center;
     border-radius: 5%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px whitesmoke;
 }
 
 .card:hover {
@@ -104,42 +91,21 @@ const views = ref([
     min-height: 100vh;
 }
 
-/* Style the header */
-header {
-    background-color: white;
-    border: 2px solid whitesmoke;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    overflow-y: auto;
-}
-
-.header-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.logo {
-    max-width: 100px;
-}
-
-.header-icons {
-    margin-top: 10px;
-}
-
 footer {
-    background-color: white;
-    color: black;
+    background-color: #0096c7;
+    color: whitesmoke;
     text-align: center;
+    height: 6rem;
     padding: 10px 0;
     margin-top: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
-    /* Push the footer to the bottom of the page */
 }
 
 .footer-content {
+    margin:1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size:large;
     display: flex;
     flex-direction: column;
     align-items: center;
