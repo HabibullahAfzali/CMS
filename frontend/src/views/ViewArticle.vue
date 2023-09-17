@@ -1,46 +1,39 @@
 
-<script>
+<script setup>
 import axios from 'axios';
+import { ref, onMounted } from 'vue';
 import Navbar from '../components/Navbar.vue';
+import Footer from '../components/Footer.vue';
 
-export default {
-  components: { Navbar },
-    name: 'ArticleList',
-    data() {
-        return {
-            articles: []
-        };
-    },
-    methods: {
-        formatDate(date) {
-            return new Date(date).toLocaleDateString();
-        },
-        truncatedContent(content) {
-            return content.length > 100 ? content.slice(0, 100) + '...' : content;
-        },
-        toggleExpand(article) {
-            article.expanded = !article.expanded;
-        },
-        fetchArticles() {
-            axios
-                .get('http://localhost:8080/articles') // Adjust the URL as needed
-                .then(response => {
-                    this.articles = response.data.map(article => ({
-                        ...article,
-                        expanded: false
-                    }));
-                })
-                .catch(error => {
-                    console.error('Error fetching articles:', error);
-                });
-        }
-    },
-    created() {
-        this.fetchArticles();
+const articles = ref([]);
+
+const formatDate = (date) => new Date(date).toLocaleDateString();
+
+const truncatedContent = (content) => (content.length > 100 ? content.slice(0, 100) + '...' : content);
+
+const toggleExpand = (article) => {
+    article.expanded = !article.expanded;
+};
+
+const fetchArticles = async () => {
+    try {
+        const response = await axios.get('http://localhost:8080/articles'); 
+        articles.value = response.data.map((article) => ({
+            ...article,
+            expanded: false,
+        }));
+    } catch (error) {
+        console.error('Error fetching articles:', error);
     }
 };
+
+onMounted(() => {
+    fetchArticles();
+});
 </script>
+
 <template>
+    <div class="page-wrraper">
     <main>
         <Navbar />
         <div class="container mt-5">
@@ -77,8 +70,9 @@ export default {
             </div>
         </div>
     </main>
+    <Footer />
+    </div>
 </template>
-
 
 <style scoped>
 .card {

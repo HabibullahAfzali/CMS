@@ -54,7 +54,7 @@ onMounted(() => {
     <main>
         <Navbar />
         <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5"
-            style="background-color: #4ed8f4;  border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);">
+            style="background-color: #4ed8f4;  border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7);">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0"
                     style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
@@ -73,7 +73,7 @@ onMounted(() => {
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
                     <div class="card bg-glass"
-                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
+                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
                         <h1 class="mt-3 display-5 fw-bold ls-tight text-center">Authorization <br /><i
                                 class="bi bi-shield-check"></i>
                         </h1>

@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 
 const views = ref([
     {
@@ -21,6 +23,7 @@ const views = ref([
 <template>
     <div class="page-wrapper">
         <main>
+            <Navbar />
             <div class="dashboard">
                 <div class="jumbotron jumbotron-fluid text-dark text-center">
                     <div class="container">
@@ -43,19 +46,13 @@ const views = ref([
                 </div>
             </div>
         </main>
-
-        <footer>
-            <div class="footer-content">
-                <div class="footer-icons">
-                </div>
-                <p>&copy; 2023 CMS. All rights reserved.</p>
-            </div>
-        </footer>
+        <Footer />
     </div>
 </template>
 
 <style scoped>
 .dashboard {
+    position: relative;
     margin: 4rem;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
@@ -65,9 +62,9 @@ const views = ref([
 
 .card {
     margin: 3rem;
-    background-color: #0096c7;
+    background-color: #48cae4;
     font-family: 'Courier New', Courier, monospace;
-    color: white;
+    color: black;
     text-align: center;
     text-decoration: none;
     transition: transform 0.3s ease;
@@ -77,45 +74,11 @@ const views = ref([
     flex-direction: column;
     justify-content: center;
     border-radius: 5%;
-    box-shadow: 0 0 10px whitesmoke;
+    box-shadow: 0 0 10px #0096c7;
 }
 
 .card:hover {
     transform: scale(1.1);
-    border: 2px solid white;
+    border: 2px solid rgb(143, 43, 7);
 }
-
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-footer {
-    background-color: #0096c7;
-    color: whitesmoke;
-    text-align: center;
-    height: 6rem;
-    padding: 10px 0;
-    margin-top: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-}
-
-.footer-content {
-    margin:1rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-size:large;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-.footer-icons {
-    color: gold;
-}
-
-footer p {
-    margin: 0;
-}</style>
+</style>

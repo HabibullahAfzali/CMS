@@ -69,23 +69,20 @@ onMounted(async () => {
     background-color: transparent;
     transition: transform 0.3s ease;
 }
-h1{
-    font-family: 'Courier New', Courier, monospace;
-    color: #081013;
-}
 .card:hover {
     transform: translateY(-5px);
 }
 
 .card-title {
     margin-top: 10px;
-    font-size: 1.25rem;
-    color: whitesmoke;
+    font-size: 1.5rem;
+    color: orangered;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .card-text {
-    color: whitesmoke;
+     font-size: 1.5rem;
+    color: orangered;
     font-family: 'Courier New', Courier, monospace;
 }
 </style>
