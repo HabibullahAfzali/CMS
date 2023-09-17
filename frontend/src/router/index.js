@@ -25,9 +25,9 @@ const router = createRouter({
       component: () => import("../views/auth/ListUsersView.vue"),
     },
     {
-      path: "/edit/:id",
+      path: "/update/:id",
       name: "edit",
-      component: () => import("../views/auth/UpdateUser.vue"),
+      component: () => import("../views/auth/UpdateUserView.vue"),
     },
     {
       path: "/addarticle",
