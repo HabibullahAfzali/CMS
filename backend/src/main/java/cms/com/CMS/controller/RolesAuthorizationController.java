@@ -1,4 +1,4 @@
-package com.login.UserLogin.controller;
+package cms.com.CMS.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
