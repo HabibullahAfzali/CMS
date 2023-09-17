@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "../views/LoginView.vue";
+import Login from "../views/auth/LoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,37 +12,37 @@ const router = createRouter({
     {
       path: "/register",
       name: "register",
-      component: () => import("../views/RegisterView.vue"),
+      component: () => import("../views/auth/RegisterView.vue"),
     },
     {
       path: "/roleassign",
       name: "roleassgin",
-      component: () => import("../views/RoleAssignView.vue"),
+      component: () => import("../views/auth/RoleAssignView.vue"),
     },
     {
       path: "/ViewUser",
       name: "ViewUser",
-      component: () => import("../views/ListUsersView.vue"),
+      component: () => import("../views/auth/ListUsersView.vue"),
     },
     {
       path: "/edit/:id",
       name: "edit",
-      component: () => import("../views/UpdateUser.vue"),
+      component: () => import("../views/auth/UpdateUser.vue"),
     },
     {
       path: "/addarticle",
       name: "addarticle",
-      component: () => import("../views/AddArticle.vue"),
+      component: () => import("../views/Publication/AddArticle.vue"),
     },
     {
       path: "/Viewarticle",
       name: "View",
-      component: () => import("../views/ViewArticle.vue"),
+      component: () => import("../views/Publication/ViewArticle.vue"),
     },
     {
       path: "/dashboard",
       name: "dashboard",
-      component: () => import("../views/Dashboard.vue"),
+      component: () => import("../components/Dashboard.vue"),
     },
   ],
 });
