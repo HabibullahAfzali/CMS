@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -67,6 +69,11 @@ public class UserController {
         List<UserEntity> userEntities = userDetailsService.getAllUsers();
         return  ResponseEntity.ok(userEntities);
     }
+    @GetMapping("/users/{id}")
+    public Optional<UserEntity> getUserById(@PathVariable Long id){
+        return  userRepository.findById(id);
+
+    }
 
     @PostMapping("/assign-roles")
     public ResponseEntity<?> assignRolesToUser(@RequestBody AssignRoleRequest assignRoleRequest) {
@@ -85,9 +92,17 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestParam String id){
-        userRepository.deleteById(Long.parseLong(id));
+    @PutMapping("/updateUser/{id}")
+    public ResponseEntity<String> updateUser(@RequestBody UserEntity userEntity, @PathVariable  Long id){
+        if(userRepository.findById(id).isPresent()){
+
+            userRepository.save(userEntity);
+        }
+        return ResponseEntity.ok( "User updated with ID: "+id);
+    }
+    @DeleteMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable Long id){
+        userRepository.deleteById((id));
         return "User deleted with ID: "+(id);
     }
 }
