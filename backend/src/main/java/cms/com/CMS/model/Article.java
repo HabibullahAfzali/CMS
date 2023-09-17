@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Entity
 @AllArgsConstructor
@@ -16,9 +16,9 @@ public class Article {
 	@Lob
 	@Column(length = 100000000)
 	private String content;
-	private LocalDateTime publication_date;
+	private Date publication_date;
 
-	private LocalDateTime last_update;
+	private Date last_update;
 	@ManyToOne
 	@JoinColumn(name = "author_id")
 	private UserEntity author;
@@ -46,19 +46,19 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public LocalDateTime getPublication_date() {
+	public Date getPublication_date() {
 		return publication_date;
 	}
 
-	public void setPublication_date(LocalDateTime publication_date) {
+	public void setPublication_date(Date publication_date) {
 		this.publication_date = publication_date;
 	}
 
-	public LocalDateTime getLast_update() {
+	public Date getLast_update() {
 		return last_update;
 	}
 
-	public void setLast_update(LocalDateTime last_update) {
+	public void setLast_update(Date last_update) {
 		this.last_update = last_update;
 	}
 	public UserEntity getAuthor() {
