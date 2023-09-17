@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
+import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 const article = ref({
     title: '',
@@ -16,7 +16,7 @@ const createArticle = () => {
     article.last_update = new Date(article.value.last_update).toISOString();
 
     axios
-        .post('http://localhost:8080/articles', article.value)
+        .post('http://localhost:8080/api/createArticle', article.value)
         .then(() => {
             alert('Article created successfully');
 

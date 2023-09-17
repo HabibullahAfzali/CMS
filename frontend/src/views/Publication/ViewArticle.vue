@@ -2,8 +2,8 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
-import Navbar from '../components/Navbar.vue';
-import Footer from '../components/Footer.vue';
+import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 
 const articles = ref([]);
 
@@ -17,7 +17,7 @@ const toggleExpand = (article) => {
 
 const fetchArticles = async () => {
     try {
-        const response = await axios.get('http://localhost:8080/articles'); 
+        const response = await axios.get('http://localhost:8080/api/getArticles'); 
         articles.value = response.data.map((article) => ({
             ...article,
             expanded: false,
