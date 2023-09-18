@@ -1,5 +1,7 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
+import axios from 'axios';
+import { useRoute, useRouter } from 'vue-router';
 
 const addressData = ref({
     streetAddress: '',
@@ -8,19 +10,30 @@ const addressData = ref({
     postalCode: '',
     country: ''
 });
-const { emit } = defineEmits(['next-step']);
-const nextStep = () => {
-    const newInfo = { ...addressData.value };
-    emit('next-step', newInfo);
-};
-</script>
 
+const createAddress = () => {
+
+    axios
+        .post('http://localhost:8080/api/saveAddress', addressData.value)
+        .then(() => {
+            alert('Address created successfully');
+
+        })
+        .catch(error => {
+            console.error('Error creating article:', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+            }
+        });
+};
+
+</script>
 <template>
     <main>
         <div class="my-5">
             <div class="mx-auto w-25" style="max-width: 100%;">
                 <h2 class="text-center mb-3">Address</h2>
-                <form @submit.prevent="nextStep">
+                <form @submit.prevent="createAddress">
                     <div class="row">
                         <div class="col-md-12 form-group mb-3">
                             <label for="streetAddress" class="form-label">Street Address</label>
@@ -57,7 +70,10 @@ const nextStep = () => {
                         </div>
                     </div>
                     <br><br>
-                    <div>
+                    <div class="form-group">
+                        <button class="btn btn-light bg-light w-100" type="submit">
+                            <i class="bi bi-check-circle"></i> Publish
+                        </button>
                     </div>
                 </form>
             </div>

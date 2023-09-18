@@ -44,6 +44,26 @@ const router = createRouter({
       name: "dashboard",
       component: () => import("../components/Dashboard.vue"),
     },
+    {
+      path: "/address",
+      name: "AddressView",
+      component: () => import("../views/RegistrationForm/AddressView.vue"),
+    },
+    {
+      path: "/education",
+      name: "EducationView",
+      component: () => import("../views/RegistrationForm/EducationView.vue"),
+    },
+    {
+      path: "/personalInfor",
+      name: "PersonalInfo",
+      component: () => import("../views/RegistrationForm/PersonalInfoView.vue"),
+    },
+    {
+      path: "/workhistory",
+      name: "AddressView",
+      component: () => import("../views/RegistrationForm/WorkHistoryView.vue"),
+    },
   ],
 });
 
