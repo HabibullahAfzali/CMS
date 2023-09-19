@@ -11,7 +11,7 @@ const addressData = ref({
     country: ''
 });
 
-const createAddress = () => {
+const saveAddress = () => {
 
     axios
         .post('http://localhost:8080/api/saveAddress', addressData.value)
@@ -20,7 +20,7 @@ const createAddress = () => {
 
         })
         .catch(error => {
-            console.error('Error creating article:', error);
+            console.error('Error Occurred!:', error);
             if (error.response) {
                 console.error('Response data:', error.response.data);
             }
@@ -33,7 +33,7 @@ const createAddress = () => {
         <div class="my-5">
             <div class="mx-auto w-25" style="max-width: 100%;">
                 <h2 class="text-center mb-3">Address</h2>
-                <form @submit.prevent="createAddress">
+                <form @submit.prevent="saveAddress">
                     <div class="row">
                         <div class="col-md-12 form-group mb-3">
                             <label for="streetAddress" class="form-label">Street Address</label>
@@ -72,7 +72,7 @@ const createAddress = () => {
                     <br><br>
                     <div class="form-group">
                         <button class="btn btn-light bg-light w-100" type="submit">
-                            <i class="bi bi-check-circle"></i> Publish
+                            <i class="bi bi-check-circle"></i> Submit
                         </button>
                     </div>
                 </form>

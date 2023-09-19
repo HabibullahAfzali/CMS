@@ -1,6 +1,6 @@
 <template>
     <main>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #48cae4; font-family: 'Courier New', Courier, monospace; font-size: 20px;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0096c7; font-family: 'Courier New', Courier, monospace; font-size: 20px;">
         
             <div class="container-fluid">
                  <router-link to="/" class="navbar-brand">

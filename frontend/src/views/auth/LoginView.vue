@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import store from '../../store/store';
 const route = useRouter();
 
 const user = ref({
@@ -12,28 +13,31 @@ const user = ref({
 const loginErrorMessage = ref('');
 
 const login = async (user) => {
-    axios.post('http://localhost:8080/login', user)
-        .then(() => {
-            alert("User successfully logged in!");
-            route.push("/dashboard")
-        })
-        .catch(error => {
+    try {
+        const response = await axios.post('http://localhost:8080/login', user);
+        const userData = response.data;
+     console.log('User Data:', userData);
+      store.dispatch('login', userData);
+    alert("User successfully logged in!");
+    route.push("/roleassign");
+        }
+        catch(error) {
             console.error("Login failed:", error);
             loginErrorMessage.value = "Wrong username or password. Please try again.";
-        });
+        }
 };
 </script>
 
 <template>
     <main>
         <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5"
-            style="background-color: #4ed8f4;  border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7);">
+            style="background-color: #0096c7;  border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7);">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0"
                     style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
                         Welcome to <br />
-                        <span style="color: #0096c7">User Authentication</span>
+                        <span style="color: black">User Authentication</span>
                     </h1>
                     <p class="mb-4 opacity-80"
                         style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large; ">
@@ -46,7 +50,7 @@ const login = async (user) => {
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
                     <div class="card bg-glass"
-                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: whitesmoke; font-family: 'Courier New', Courier, monospace; font-size: large;">
+                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: black; font-family: 'Courier New', Courier, monospace; font-size: large;">
                         <h1 class="mt-3 display-5 fw-bold ls-tight text-center"> <span class="bi bi-person"></span>
                         </h1>
                         <div class="card-body px-4 py-5 px-md-5">
@@ -79,6 +83,7 @@ const login = async (user) => {
     </main>
 </template>
 <style scoped>
+
 .signup {
     color: black;
     font-size: larger;
@@ -86,4 +91,22 @@ const login = async (user) => {
 
 .signup:hover .bi {
     font-size: 1.2em;
-}</style>
+}
+.card {
+    position: relative; /* Ensure the parent is a positioned element */
+}
+
+.card::before {
+    content: "";
+    background-image: url('../../assets/Images/login3.jpg');
+    opacity: 40%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    z-index: -1; /* Place it behind the content */
+}
+
+</style>

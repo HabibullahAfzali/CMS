@@ -1,7 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Navbar from './Navbar.vue'
 import Footer from './Footer.vue'
+import store from '../store/store';
 
 const views = ref([
     {
@@ -19,6 +20,9 @@ const views = ref([
         route: '/Viewarticle',
     },
 ]);
+const storeUsert = computed(() =>
+    store.state.user
+);
 </script>
 <template>
     <div class="page-wrapper">
@@ -27,9 +31,13 @@ const views = ref([
             <div class="dashboard">
                 <div class="jumbotron jumbotron-fluid text-dark text-center">
                     <div class="container">
-                        <h1 class="display-4">Welcome to Your Dashboard</h1>
+                        <h1 class="display-4">Welcome to Dashboard</h1>
                         <p class="lead">CMS Control Panel.</p>
                     </div>
+                     <div v-if="storeUser" class="mt-3">
+                <p>User Role:</p>
+                <p>{{ storeUser.role }}</p>
+            </div>
                 </div>
                 <div class="container">
                     <div class="row">
@@ -38,7 +46,7 @@ const views = ref([
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ view.title }}</h5>
-                                    <p class="card-text">{{ view.description }}</p>
+                                    <h6 class="card-text">{{ view.description }}</h6>
                                 </div>
                             </div>
                         </router-link>
@@ -46,7 +54,6 @@ const views = ref([
                 </div>
             </div>
         </main>
-        <Footer />
     </div>
 </template>
 
@@ -57,12 +64,31 @@ const views = ref([
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
+h1{
+    color: whitesmoke;
+   
+}
+p{
+     color: whitesmoke;
+    font-size: 1.5rem;
+}
 
-
+.page-wrapper::before {
+    content: "";
+    background-image: url('../assets/Images/dashboard.jpg');
+    opacity: 40%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    z-index: -1; /* Place it behind the content */
+}
 
 .card {
     margin: 3rem;
-    background-color: #48cae4;
+    background-color: #00b4d8;
     font-family: 'Courier New', Courier, monospace;
     color: black;
     text-align: center;

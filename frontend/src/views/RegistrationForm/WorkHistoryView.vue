@@ -1,16 +1,27 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
+import axios from 'axios';
 
 const workHistoryData = ref({
-    employerName: '',
+    employer: '',
     jobTitle: '',
     startDate: '',
     endDate: ''
 });
-const { emit } = defineEmits(['next-step']);
-const nextStep = () => {
-    const newInfo = { ...workHistoryData.value };
-    emit('next-step', newInfo);
+const saveWorkHistory = () => {
+
+    axios
+        .post('http://localhost:8080/api/saveWorks', workHistoryData.value)
+        .then(() => {
+            alert('Saved successfully');
+
+        })
+        .catch(error => {
+            console.error('Error Occurred! :', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+            }
+        });
 };
 </script>
 
@@ -19,12 +30,12 @@ const nextStep = () => {
         <div class="my-5">
             <div class="mx-auto w-25" style="max-width: 100%;">
                 <h2 class="text-center mb-3">Work History</h2>
-                <form @submit.prevent="nextStep">
+                <form @submit.prevent="saveWorkHistory">
                     <div class="row">
                         <div class="col-md-12 form-group mb-3">
-                            <label for="employerName" class="form-label">Employer</label>
-                            <input id="employerName" type="text" class="form-control" placeholder="Employer Name" required
-                                v-model="workHistoryData.employerName">
+                            <label for="employer" class="form-label">Employer</label>
+                            <input id="employer" type="text" class="form-control" placeholder="Employer Name" required
+                                v-model="workHistoryData.employer">
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +60,10 @@ const nextStep = () => {
                         </div>
                     </div>
                     <br><br>
-                    <div>
+                    <div class="form-group">
+                        <button class="btn btn-light bg-light w-100" type="submit">
+                            <i class="bi bi-check-circle"></i> Submit
+                        </button>
                     </div>
                 </form>
             </div>

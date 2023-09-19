@@ -1,5 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/auth/LoginView.vue";
+import dashboard from "../components/Dashboard.vue";
+import createUser from "../views/auth/RegisterView.vue";
+import viewUser from "../views/auth/ListUsersView.vue";
+import updateUser from "../views/auth/UpdateUserView.vue";
+import assignRole from "../views/auth/RoleAssignView.vue";
+import address from "../views/RegistrationForm/AddressView.vue";
+import viewArticle from "../views/Publication/ViewArticle.vue";
+import addArticle from "../views/Publication/AddArticle.vue";
+import education from "../views/RegistrationForm/EducationView.vue";
+import workHistory from "../views/RegistrationForm/WorkHistoryView.vue";
+import personalInfo from "../views/RegistrationForm/PersonalInfoView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,57 +23,58 @@ const router = createRouter({
     {
       path: "/register",
       name: "register",
-      component: () => import("../views/auth/RegisterView.vue"),
+      component: createUser,
     },
     {
       path: "/roleassign",
       name: "roleassgin",
-      component: () => import("../views/auth/RoleAssignView.vue"),
+      component: assignRole,
+      meta: { requiredRole: "ADMIN" },
     },
     {
       path: "/ViewUser",
       name: "ViewUser",
-      component: () => import("../views/auth/ListUsersView.vue"),
+      component: viewUser,
     },
     {
       path: "/update/:id",
       name: "edit",
-      component: () => import("../views/auth/UpdateUserView.vue"),
+      component: updateUser,
     },
     {
       path: "/addarticle",
       name: "addarticle",
-      component: () => import("../views/Publication/AddArticle.vue"),
+      component: addArticle,
     },
     {
       path: "/Viewarticle",
       name: "View",
-      component: () => import("../views/Publication/ViewArticle.vue"),
+      component: viewArticle,
     },
     {
       path: "/dashboard",
       name: "dashboard",
-      component: () => import("../components/Dashboard.vue"),
+      component: dashboard,
     },
     {
       path: "/address",
       name: "AddressView",
-      component: () => import("../views/RegistrationForm/AddressView.vue"),
+      component: address,
     },
     {
       path: "/education",
       name: "EducationView",
-      component: () => import("../views/RegistrationForm/EducationView.vue"),
+      component: education,
     },
     {
-      path: "/personalInfor",
+      path: "/personalInfo",
       name: "PersonalInfo",
-      component: () => import("../views/RegistrationForm/PersonalInfoView.vue"),
+      component: personalInfo,
     },
     {
       path: "/workhistory",
-      name: "AddressView",
-      component: () => import("../views/RegistrationForm/WorkHistoryView.vue"),
+      name: "WorkView",
+      component: workHistory,
     },
   ],
 });

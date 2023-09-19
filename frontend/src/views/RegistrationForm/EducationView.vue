@@ -1,5 +1,7 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
+import axios from 'axios';
+
 
 const educationData = ref({
     institution: '',
@@ -8,11 +10,20 @@ const educationData = ref({
     startDate: '',
     graduationDate: '',
 });
-const { emit } = defineEmits(['next-step']);
+const saveEducation = () => {
 
-const nextStep = () => {
-    const newInfo = { ...educationData.value };
-    emit('next-step', newInfo);
+    axios
+        .post('http://localhost:8080/api/saveEducation', educationData.value)
+        .then(() => {
+            alert('Saved successfully');
+
+        })
+        .catch(error => {
+            console.error('Error Occurred!:', error);
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+            }
+        });
 };
 </script>
 <template>
@@ -20,7 +31,7 @@ const nextStep = () => {
         <div class="my-5">
             <div class="mx-auto w-25" style="max-width: 100%;">
                 <h2 class="text-center mb-3">Education</h2>
-                <form @submit.prevent="nextStep">
+                <form @submit.prevent="saveEducation">
                     <div class="row">
                         <div class="col-md-12 form-group mb-3">
                             <label for="institutionName" class="form-label">Institution</label>
@@ -57,7 +68,10 @@ const nextStep = () => {
                         </div>
                     </div>
                     <br><br>
-                    <div>
+                    <div class="form-group">
+                        <button class="btn btn-light bg-light w-100" type="submit">
+                            <i class="bi bi-check-circle"></i> Submit
+                        </button>
                     </div>
                 </form>
             </div>
