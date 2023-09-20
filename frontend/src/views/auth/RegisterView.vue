@@ -50,8 +50,8 @@ const signUp = async () => {
                 <div class="col-lg-6 mb-5 mb-lg-0"
                     style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        Welcome To The <br />
-                        <span style="color: #000">Registeration Page</span>
+                        Welcome! please fill The <br />
+                        <span style="color: #000">Registeration Form</span>
                     </h1>
                     <p class="mb-4 opacity-70"
                         style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
@@ -76,20 +76,18 @@ const signUp = async () => {
                                         <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
                                             <input type="file" @change="handleProfilePictureUpload($event)"
                                                 class="form-control d-none" id="profilePictureInput" ref="fileInput" />
-                                            <i class="bi bi-camera-fill"></i>
+                                            <i class="bi bi-person-circle"></i>
+
                                         </label>
                                     </div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" class="form-control center" v-model="user.username" />
-                                    <label class="form-label" for="form3Example1">UserName</label>
+                                    <input type="text" class="form-control center" placeholder="username" v-model="user.username" />
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="email" class="form-control" v-model="user.email" />
-                                    <label class="form-label" for="form3Example2">Email</label>
+                                    <input type="email" class="form-control" v-model="user.email" placeholder="email" />
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="password" class="form-control" v-model="user.password" />
-                                    <label class="form-label" for="form3Example4">Password</label>
+                                    <input type="password" class="form-control" v-model="user.password" placeholder="password" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">

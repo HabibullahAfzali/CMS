@@ -19,6 +19,11 @@ const views = ref([
         description: 'All published articles.',
         route: '/Viewarticle',
     },
+    {
+        title: 'Registration Form',
+        description: 'Personal Info, Education, Work Experience...',
+        route: '/personalInfo',
+    },
 ]);
 const storeUsert = computed(() =>
     store.state.user

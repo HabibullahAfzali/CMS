@@ -48,7 +48,7 @@ const deleteUsers = (id) => {
                             </div>
                             <h5 class="card-title mt-3">{{ user.username }}</h5>
                             <p class="card-text">{{ user.email }}</p>
-                            <p class="card-text">{{ user.roles.map(role => role.name).join(',') }}</p>
+                            <p class="card-text">Role <br/> ( {{ user.roles.map(role => role.name).join(',') }} )</p>
                             <div class="mt-3 user-card-buttons">
                                 <router-link  class="btn btn-light" tag="button" :to="`/update/${user.id}`">
                                     <i class="bi bi-pencil"></i>
@@ -94,13 +94,13 @@ const deleteUsers = (id) => {
 .card-title {
     margin-top: 10px;
     font-size: 1.5rem;
-    color: orangered;
+    color: whitesmoke;
     font-family: 'Courier New', Courier, monospace;
 }
 
 .card-text {
     font-size: 1.5rem;
-    color: orangered;
+    color: whitesmoke;
     font-family: 'Courier New', Courier, monospace;
 }
 .btn-dark{
