@@ -21,11 +21,13 @@ import java.util.Map;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final JwtUtils jwtUtils;
 
-    public JwtAuthenticationFilter(JwtUtils jwtUtils){
+    private final   JwtUtils jwtUtils;
+
+    public JwtAuthenticationFilter(JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
     }
+
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
@@ -44,7 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
             return getAuthenticationManager().authenticate(authenticationToken);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e+ " Username or Password is not correct please try again later");
         }
 
     }
