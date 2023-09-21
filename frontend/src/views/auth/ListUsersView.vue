@@ -1,15 +1,13 @@
 <script setup>
+import DataService from '../../services/DataService'
 import { ref, onMounted } from 'vue';
 import Navbar from '@/components/Navbar.vue';
-import { useRouter } from 'vue-router';
-import axios from 'axios';
 
 const registeredUsers = ref([]);
-const router = useRouter();
 
 const getUser = onMounted(async () => {
     try {
-        const response = await axios.get('http://localhost:8080/api/users');
+        const response = await DataService.getAll('users');
         registeredUsers.value = response.data.map(user => {
 
             if (user.profilePicture) {
@@ -23,15 +21,14 @@ const getUser = onMounted(async () => {
         console.error('Error fetching registered users:', error);
     }
 });
-const deleteUsers = (id) => {
-    axios
-        .delete(`http://localhost:8080/api/deleteUser/${id}`)
-        .then(() => {
-            getUser();
-        })
-        .catch((error) => {
-            console.error('an error occured:', error);
-        });
+const deleteRecord = async (id) => {
+    try {
+        await DataService.deleteUser('deleteUser', id);
+        getUser();
+
+    } catch (error) {
+        console.error('An error occurred while deleting:', error);
+    };
 };
 </script>
 <template>
@@ -48,12 +45,12 @@ const deleteUsers = (id) => {
                             </div>
                             <h5 class="card-title mt-3">{{ user.username }}</h5>
                             <p class="card-text">{{ user.email }}</p>
-                            <p class="card-text">Role <br/> ( {{ user.roles.map(role => role.name).join(',') }} )</p>
+                            <p class="card-text">Role <br /> ( {{ user.roles.map(role => role.name).join(',') }} )</p>
                             <div class="mt-3 user-card-buttons">
-                                <router-link  class="btn btn-light" tag="button" :to="`/update/${user.id}`">
+                                <router-link class="btn btn-light" tag="button" :to="`/update/${user.id}`">
                                     <i class="bi bi-pencil"></i>
                                 </router-link>
-                                <button @click="deleteUsers(user.id)" class="btn btn-dark">
+                                <button @click="deleteRecord(user.id)" class="btn btn-dark">
                                     <i class="vi bi-trash"></i>
                                 </button>
                             </div>
@@ -65,6 +62,7 @@ const deleteUsers = (id) => {
     </main>
 </template>
 <style scoped>
+
 .profile-picture {
     width: 120px;
     height: 120px;
@@ -72,7 +70,8 @@ const deleteUsers = (id) => {
     overflow: hidden;
     margin: 0 auto;
     border: 3px solid salmon;
-    box-shadow: 2px 5px 8px #0096c7;
+    box-shadow: 2px 5px 5px #8bc4d6;
+
 }
 
 .profile-picture img {
@@ -82,6 +81,7 @@ const deleteUsers = (id) => {
 }
 
 .card {
+    
     border: none;
     background-color: transparent;
     transition: transform 0.3s ease;
@@ -100,18 +100,20 @@ const deleteUsers = (id) => {
 
 .card-text {
     font-size: 1.5rem;
-    color: whitesmoke;
+    color: black;
     font-family: 'Courier New', Courier, monospace;
 }
-.btn-dark{
+
+.btn-dark {
     margin-left: 0.5rem;
 }
- .user-card-buttons {
 
-  display: none; 
-} 
+.user-card-buttons {
+
+    display: none;
+}
 
 .card:hover .user-card-buttons {
-  display: block; 
+    display: block;
 }
 </style>

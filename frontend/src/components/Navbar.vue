@@ -1,6 +1,6 @@
 <template>
     <main>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0096c7; font-family: 'Courier New', Courier, monospace; font-size: 20px;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style=" font-family: 'Courier New', Courier, monospace; font-size: 20px;">
         
             <div class="container-fluid">
                  <router-link to="/" class="navbar-brand">
@@ -24,18 +24,9 @@
 
 <style scoped>
 .navbar{
-      border-bottom: 3px solid rgb(143, 43, 7);
+      border-bottom: 5px dotted hsl(207, 86%, 48%);
 }
-.navbar-nav .nav-link.active {
-    color: orangered;
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-.navbar-nav .nav-link {
-    color: rgb(143, 43, 7);
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
+
 
 .navbar-nav .nav-link:hover {
     font-weight: bold;
@@ -44,9 +35,10 @@
 
 .logo-img {
     transition: transform 0.3s ease;
-    max-height: 40px;
+    max-height: 60px;
     margin-right: 10px;
     border-radius: 10%;
+    overflow: hidden;
 }
 .logo-img:hover{
     transform: scale(1.1);

@@ -1,7 +1,7 @@
 <script setup>
+import DataService from '../../services/DataService'
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
 import store from '../../store/store';
 const route = useRouter();
 
@@ -14,9 +14,9 @@ const loginErrorMessage = ref('');
 
 const login = async (user) => {
     try {
-        const response = await axios.post('http://localhost:8080/login', user);
+        const response = await DataService.create('login', user);
         const userData = response.data;
-     console.log('User Data:', userData);
+     //save token
       store.dispatch('login', userData);
     alert("User successfully logged in!");
     route.push("/roleassign");
@@ -31,13 +31,13 @@ const login = async (user) => {
 <template>
     <main>
         <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5"
-            style="background-color: #0096c7;  border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7);">
+            style="background-color: #053970;  border-radius: 20px; box-shadow: 0px 0px 20px rgb(252, 237, 232);">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0"
                     style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
                         Welcome to <br />
-                        <span style="color: black">User Authentication</span>
+                        <span style="color: #c49c9c">User Authentication</span>
                     </h1>
                     <p class="mb-4 opacity-80"
                         style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large; ">
@@ -50,7 +50,7 @@ const login = async (user) => {
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
                     <div class="card bg-glass"
-                        style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: black; font-family: 'Courier New', Courier, monospace; font-size: large;">
+                        style="background-color: #195ca3; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: hsl(218, 81%, 95%); font-family: 'Courier New', Courier, monospace; font-size: large;">
                         <h1 class="mt-3 display-5 fw-bold ls-tight text-center"> <span class="bi bi-person"></span>
                         </h1>
                         <div class="card-body px-4 py-5 px-md-5">
@@ -72,7 +72,7 @@ const login = async (user) => {
                                 <div class="text-center">
                                     <br />
                                     <p> Not have an account </p>
-                                    <a href="/register"><span class="signup"><i class="bi bi-person-plus"></i> </span></a>
+                                    <a href="/register"><span class="signup"><i class="bi bi-person-plus" style="color: hsl(218, 81%, 95%);"></i> </span></a>
                                 </div>
                             </form>
                         </div>
@@ -83,7 +83,9 @@ const login = async (user) => {
     </main>
 </template>
 <style scoped>
-
+.container{
+     opacity: 80%;
+}
 .signup {
     color: black;
     font-size: larger;

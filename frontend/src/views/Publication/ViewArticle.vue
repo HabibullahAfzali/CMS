@@ -37,7 +37,6 @@ onMounted(() => {
     <main>
         <Navbar />
         <div class="container mt-5">
-            <h2 class="text-center mb-4">Articles</h2>
             <div class="row">
                 <div class="col-md-4 mb-4" v-for="article in articles" :key="article.id">
                     <div class="card">

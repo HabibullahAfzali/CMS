@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/auth/LoginView.vue";
 import dashboard from "../components/Dashboard.vue";
+import dataReview from "../components/DataReview.vue";
 import createUser from "../views/auth/RegisterView.vue";
 import viewUser from "../views/auth/ListUsersView.vue";
 import updateUser from "../views/auth/UpdateUserView.vue";
@@ -57,9 +58,9 @@ const router = createRouter({
       component: dashboard,
     },
     {
-      path: "/address",
-      name: "AddressView",
-      component: address,
+      path: "/personalInfo",
+      name: "PersonalInfo",
+      component: personalInfo,
     },
     {
       path: "/education",
@@ -67,14 +68,19 @@ const router = createRouter({
       component: education,
     },
     {
-      path: "/personalInfo",
-      name: "PersonalInfo",
-      component: personalInfo,
-    },
-    {
       path: "/workhistory",
       name: "WorkView",
       component: workHistory,
+    },
+    {
+      path: "/address",
+      name: "AddressView",
+      component: address,
+    },
+    {
+      path: "/datareview",
+      name: "dataReview",
+      component: dataReview,
     },
   ],
 });
