@@ -1,5 +1,5 @@
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import DataService from '@/services/DataService';
 
 export default {
@@ -30,9 +30,29 @@ export default {
                 console.error('Error fetching data:', error);
             }
         });
+         // Calculate age based on date of birth
+        const calculateAge = (dateOfBirth) => {
+            const today = new Date();
+            const birthDate = new Date(dateOfBirth);
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                return age - 1;
+            } else {
+                return age;
+            }
+        };
+        
+        const personalInfoWithAge = computed(() => {
+            return personalInfo.value.map(info => ({
+                ...info,
+                age: calculateAge(info.dateOfBirth),
+            }));
+        });
 
         return {
-            personalInfo,
+            personalInfo:personalInfoWithAge,
             educationData,
             workHistoryData,
             addressData,
@@ -52,9 +72,12 @@ export default {
                                 <th>NIE</th>
                                 <th>FirstName</th>
                                 <th>LastName</th>
-                                <th>Date of Birth</th>
                                 <th>Gender</th>
+                                <th>Age</th>
                                 <th>Nationality</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -62,9 +85,11 @@ export default {
                                 <td>{{ info.identityNumber }}</td>
                                 <td>{{ info.firstName }}</td>
                                 <td>{{ info.lastName }}</td>
-                                <td>{{ info.dateOfBirth }}</td>
                                 <td>{{ info.gender.name }}</td>
+                                <td>{{ info.age }}</td>
                                 <td>{{ info.nationality.name }}</td>
+                                <td>{{ info.contactNumber }}</td>
+                                <td>{{ info.emailAddress }}</td>
                                 </tr>
                             </template>
                         </tbody>

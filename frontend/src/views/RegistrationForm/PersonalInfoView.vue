@@ -94,7 +94,7 @@ onMounted(() => {
               <form @submit.prevent="savePersonalInfo">
                 <div class="row">
                   <div class="col-md-12 form-group mb-3">
-                    <input id="identityNumber" type="text" class="form-control" placeholder="identityNumber" required
+                    <input id="identityNumber" type="text" class="form-control" placeholder="identityNumber/NIE" required
                       v-model="PersonalInfo.identityNumber" />
                   </div>
                 </div>

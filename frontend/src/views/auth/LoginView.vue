@@ -65,7 +65,7 @@ const login = async (user) => {
                                 </div>
                                 <div v-if="loginErrorMessage" class="alert alert-danger">{{ loginErrorMessage }}</div>
 
-                                <button class="btn btn-info w-100" :disabled="!user.username || !user.password">
+                                <button class="btn btn-dark w-100" :disabled="!user.username || !user.password">
                                     <i class="bi bi-check-circle"></i>
                                     Submit
                                 </button>
@@ -90,6 +90,7 @@ const login = async (user) => {
     color: black;
     font-size: larger;
 }
+
 
 .signup:hover .bi {
     font-size: 1.2em;

@@ -33,7 +33,7 @@ const router = createRouter({
       meta: { requiredRole: "ADMIN" },
     },
     {
-      path: "/ViewUser",
+      path: "/viewuser",
       name: "ViewUser",
       component: viewUser,
     },

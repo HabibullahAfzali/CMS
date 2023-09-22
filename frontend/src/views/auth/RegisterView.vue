@@ -11,20 +11,25 @@ const user = ref({
 //Form fields filling validation
 const isFilled = computed(() => {
     return (
-        user.value.username.trim() !=='' &&
-        user.value.email.trim() !=='' &&
-        user.value.password.trim() !=='' 
+        user.value.username.trim() !== '' &&
+        user.value.email.trim() !== '' &&
+        user.value.password.trim() !== ''
     )
-   
+
 })
 
 const route = useRouter();
 const profilePicture = ref(null);
+const selectedImage = ref(null);
 const handleProfilePictureUpload = (event) => {
     profilePicture.value = event.target.files[0];
+    if (profilePicture.value) {
+        const imageUrl = URL.createObjectURL(profilePicture.value);
+        selectedImage.value = imageUrl;
+    }
 }
 const signUp = async () => {
-     const formData = new FormData();
+    const formData = new FormData();
     for (const key in user.value) {
         formData.append(key, user.value[key]);
     }
@@ -34,7 +39,7 @@ const signUp = async () => {
     axios.post('http://localhost:8080/api/createUser', formData)
         .then(() => {
             alert("User successfully added!");
-            route.push('/');
+            route.push('/viewuser');
         })
         .catch(error => {
             console.error("Not able to add user:", error);
@@ -70,27 +75,33 @@ const signUp = async () => {
                         </h1>
                         <div class="card-body px-3 py-4 px-md-5">
                             <form @submit.prevent="signUp">
-                                     <!-- Profile Picture input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
-                                            <input type="file" @change="handleProfilePictureUpload($event)"
-                                                class="form-control d-none" id="profilePictureInput" ref="fileInput" />
-                                            <i class="bi bi-person-circle"></i>
-
-                                        </label>
-                                    </div>
+                                <!-- Profile Picture input -->
                                 <div class="form-outline mb-4">
-                                    <input type="text" class="form-control center" placeholder="username" v-model="user.username" />
+                                    <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
+                                        <input type="file" @change="handleProfilePictureUpload($event)"
+                                            class="form-control d-none" id="profilePictureInput" ref="fileInput" />
+                                        <!-- Display either the selected image or an icon -->
+                                        <div class="text-center profile-image-container">
+                                            <img v-if="selectedImage" :src="selectedImage" alt="Selected Profile Picture"
+                                                class="img-fluid mb-3" style="max-width: 200px;" />
+                                            <i v-else class="bi bi-person-circle" style="font-size: 36px;"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="text" class="form-control center" placeholder="username"
+                                        v-model="user.username" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <input type="email" class="form-control" v-model="user.email" placeholder="email" />
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="password" class="form-control" v-model="user.password" placeholder="password" />
+                                    <input type="password" class="form-control" v-model="user.password"
+                                        placeholder="password" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                        <button class="btn btn-info w-100" :disabled="!isFilled">
+                                        <button class="btn btn-dark w-100" :disabled="!isFilled">
                                             <i class="bi bi-check-circle"></i>
                                             Submit
                                         </button>
@@ -111,9 +122,10 @@ const signUp = async () => {
 </template>
 
 <style scoped>
-.container{
-     opacity: 80%;
+.container {
+    opacity: 80%;
 }
+
 .profile-picture-label {
     display: inline-block;
     width: 120px;
@@ -143,4 +155,29 @@ const signUp = async () => {
 .symbol:hover {
     transform: scale(1.1);
     border: 2px solid white;
-}</style>
+}
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e2e2df;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-image-container img {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    line-height: 120px;
+}
+
+.profile-image-container i {
+    font-size: 36px;
+    color: #000; /* Change the color of the icon as desired */
+}
+
+
+</style>
