@@ -75,6 +75,7 @@ const signUp = async () => {
                         </h1>
                         <div class="card-body px-3 py-4 px-md-5">
                             <form @submit.prevent="signUp">
+                                 <!-- profile-picture -->
                                 <div class="form-outline mb-4">
                                     <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
                                         <input type="file" @change="handleProfilePictureUpload($event)"
@@ -86,6 +87,7 @@ const signUp = async () => {
                                         </div>
                                     </label>
                                 </div>
+                                 <!-- end of profile-picture -->
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control center" placeholder="username"
                                         v-model="user.username" />

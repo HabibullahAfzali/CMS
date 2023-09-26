@@ -8,12 +8,18 @@ const user = ref({
     username: '',
     password: ''    
 });
-const profilePicture = ref(null);
-const handleProfilePictureUpload = (event) => {
-    profilePicture.value = event.target.files[0];
-}
 const router = useRouter();
 const route = useRoute();
+const profilePicture = ref(null);
+const selectedImage = ref(null);
+const handleProfilePictureUpload = (event) => {
+    profilePicture.value = event.target.files[0];
+      if (profilePicture.value) {
+        const imageUrl = URL.createObjectURL(profilePicture.value);
+        selectedImage.value = imageUrl;
+    }
+}
+
 
 onMounted(() => {
     getUser();
@@ -57,8 +63,8 @@ const updateUser = () => {
                 <div class="col-lg-6 mb-5 mb-lg-0"
                     style="z-index: 10; font-family: 'Courier New', Courier, monospace; font-size: large;">
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        Welcome To The <br />
-                        <span style="color: #0096c7">Registeration Page</span>
+                        Edit <br />
+                        <span style="color: #0096c7">User Information</span>
                     </h1>
                     <p class="mb-4 opacity-70"
                         style="color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
@@ -74,18 +80,23 @@ const updateUser = () => {
                         style="background-color: #0096c7; opacity:80%; border-radius: 20px; box-shadow: 0px 0px 20px rgb(143, 43, 7); color: #eef1f2; font-family: 'Courier New', Courier, monospace; font-size: large;">
                         <h1 class="mt-3 display-5 fw-bold ls-tight text-center">
                             <i class="bi bi-person-plus"></i> <br />
-                            SignUp
+                            Edit User Info
                         </h1>
                         <div class="card-body px-3 py-4 px-md-5">
                             <form @submit.prevent="updateUser">
-                                <!-- Profile Picture input -->
+                                <!-- Profile Picture -->
                                 <div class="form-outline mb-4">
-                                    <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
-                                        <input type="file" @change="handleProfilePictureUpload($event)"
-                                            class="form-control d-none" id="profilePictureInput" ref="fileInput" />
-                                        <i class="bi bi-camera-fill"></i>
-                                    </label>
-                                </div>
+                                        <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
+                                            <input type="file" @change="handleProfilePictureUpload($event)"
+                                                class="form-control d-none" id="profilePictureInput" ref="fileInput" />
+                                            <div class="text-center profile-image-container">
+                                                <img v-if="selectedImage" :src="selectedImage" alt="Selected Profile Picture"
+                                                    class="img-fluid mb-3" style="max-width: 200px;" />
+                                                <i v-else class="bi bi-person-circle" style="font-size: 36px;"></i>
+                                            </div>
+                                        </label>
+                                    </div>
+                                      <!-- end of profile-picture -->
                                 <div class="form-outline mb-4">
                                     <input type="text" class="form-control center" v-model="user.username" />
                                     <label class="form-label" for="form3Example1">UserName</label>
@@ -121,6 +132,10 @@ const updateUser = () => {
 </template>
 
 <style scoped>
+.container {
+    filter: brightness(80%);
+}
+
 .profile-picture-label {
     display: inline-block;
     width: 120px;
@@ -150,5 +165,29 @@ const updateUser = () => {
 .symbol:hover {
     transform: scale(1.1);
     border: 2px solid white;
+}
+
+.profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #e2e2df;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-image-container img {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    line-height: 120px;
+}
+
+.profile-image-container i {
+    font-size: 36px;
+    color: #000;
+    /* Change the color of the icon as desired */
 }
 </style>
