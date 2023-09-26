@@ -48,12 +48,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      return    userRepository.save(userEntity);
 
     }
+
 //get all users
     public List<UserEntity> getAllUsers(){
 
         return (List<UserEntity>) userRepository.findAll();
     }
-
 
 
 }

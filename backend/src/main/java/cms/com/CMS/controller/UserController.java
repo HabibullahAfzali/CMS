@@ -2,12 +2,12 @@ package cms.com.CMS.controller;
 
 import cms.com.CMS.repository.RoleRepository;
 import cms.com.CMS.service.UserDetailsServiceImpl;
-import cms.com.CMS.service.UserService;
 import cms.com.CMS.service.request.AssignRoleRequest;
 import cms.com.CMS.service.request.CreateUserDTO;
 import cms.com.CMS.model.RoleEntity;
 import cms.com.CMS.model.UserEntity;
 import cms.com.CMS.repository.UserRepository;
+import cms.com.CMS.service.request.UserServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -38,13 +37,15 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
+    //Create the directory for Images
     public static String uploadDirectory = System.getProperty("user.dir")+ "/src/main/webapp/Images";
 
     @PostMapping("/createUser")
     public ResponseEntity<?> createUser(@Valid @ModelAttribute CreateUserDTO createUserDTO,
                                         @RequestParam("image") MultipartFile file){
+
         String originalFilename = file.getOriginalFilename();
         Path fileNameAndPath = Paths.get(uploadDirectory,originalFilename);
         try {
@@ -57,11 +58,11 @@ public class UserController {
             userEntity.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
 
             userRepository.save(userEntity);
+
             return ResponseEntity.ok("User Created Successfully!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }
     @GetMapping("/users")
@@ -77,9 +78,8 @@ public class UserController {
 
     @PostMapping("/assign-roles")
     public ResponseEntity<?> assignRolesToUser(@RequestBody AssignRoleRequest assignRoleRequest) {
-
         try {
-            userService.assignRolesToUser(assignRoleRequest);
+            userServiceImpl.assignRolesToUser(assignRoleRequest);
             return ResponseEntity.ok("Roles assigned successfully");
 
         } catch (RuntimeException e) {
@@ -105,6 +105,5 @@ public class UserController {
         userRepository.deleteById((id));
         return "User deleted with ID: "+(id);
     }
-
 
 }

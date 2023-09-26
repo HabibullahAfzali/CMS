@@ -4,21 +4,16 @@ import cms.com.CMS.model.RoleEntity;
 import cms.com.CMS.model.UserEntity;
 import cms.com.CMS.repository.RoleRepository;
 import cms.com.CMS.repository.UserRepository;
-import cms.com.CMS.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private RoleRepository roleRepository;
 
-	@Override
 	public void assignRolesToUser(AssignRoleRequest assignRoleRequest) {
 		Long userId = assignRoleRequest.getUserId();
 		Long roleId = assignRoleRequest.getRoleId();
