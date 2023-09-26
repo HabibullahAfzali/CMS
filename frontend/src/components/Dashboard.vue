@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
 import Navbar from './Navbar.vue'
-import Footer from './Footer.vue'
 import store from '../store/store';
 
 const views = ref([
@@ -22,7 +21,7 @@ const views = ref([
     {
         title: 'Registration Form',
         description: 'Personal Info, Education, Work Experience...',
-        route: '/personalInfo',
+        route: '/datareview',
     },
 ]);
 const storeUsert = computed(() =>

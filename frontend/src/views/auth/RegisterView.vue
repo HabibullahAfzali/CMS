@@ -75,12 +75,10 @@ const signUp = async () => {
                         </h1>
                         <div class="card-body px-3 py-4 px-md-5">
                             <form @submit.prevent="signUp">
-                                <!-- Profile Picture input -->
                                 <div class="form-outline mb-4">
                                     <label class="profile-picture-label cursor-pointer" for="profilePictureInput">
                                         <input type="file" @change="handleProfilePictureUpload($event)"
                                             class="form-control d-none" id="profilePictureInput" ref="fileInput" />
-                                        <!-- Display either the selected image or an icon -->
                                         <div class="text-center profile-image-container">
                                             <img v-if="selectedImage" :src="selectedImage" alt="Selected Profile Picture"
                                                 class="img-fluid mb-3" style="max-width: 200px;" />
@@ -123,7 +121,7 @@ const signUp = async () => {
 
 <style scoped>
 .container {
-    opacity: 80%;
+    filter: brightness(80%);
 }
 
 .profile-picture-label {

@@ -14,7 +14,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <router-link to="/register" class="nav-link" exact-active-class="active">New account</router-link>
-                        <router-link to="/personalInfo" class="nav-link" exact-active-class="active">Registration Form</router-link>
+                        <router-link to="/personalInfo" class="nav-link" exact-active-class="active">Registration-Form</router-link>
                     </ul>
                 </div>
             </div>

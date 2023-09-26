@@ -104,7 +104,7 @@ onMounted(() => {
                                 <br><br>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
-                                        <button class="btn btn-info w-100"
+                                        <button class="btn btn-dark w-100"
                                             :disabled="selectedUser === 'Select_from_list' || selectedRole === 'Select_from_list'">
                                             <i class="bi bi-check-circle"></i>
                                             Submit
